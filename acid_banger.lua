@@ -213,6 +213,9 @@ function draw_pattern_303(which)
     end
 
     screen.move(screen_x, screen_y)
+    if i == 1 or i == 5 or i == 9 or i == 13 then
+      screen.level(3)
+    end
     screen.line_rel(step_width, 0)
     screen.close()
     screen.stroke()
@@ -249,7 +252,6 @@ end
 
 -- Draw the 909 pattern
 function draw_pattern_909()
-  screen.level(15)
   screen.line_width(1)
   screen.font_size(8)
   local screen_x = 0
@@ -258,7 +260,7 @@ function draw_pattern_909()
 
   for key_idx=1, #NineOh.drum_keys do
     local key = NineOh.drum_keys[key_idx]
-    screen.level(15)
+    screen.level(5)
     if NineOh.drum_mutes[key_idx] == 1 then
       screen.level(3)
     end
@@ -268,20 +270,22 @@ function draw_pattern_909()
     screen.move(screen_x, screen_y)
     screen.close()
     for i=1, 16 do
+      local drum_pattern = pattern_909[key]
+      screen.level(1)
+      if drum_pattern[i] ~= nil then
+        screen.level(5)
+      end
+
       if i == pattern_909_pos then
         screen.level(15)
-      else
-        screen.level(1)
       end
-      local drum_pattern = pattern_909[key]
-      if drum_pattern[i] ~= nil then
-        screen.line_rel(0, -5)
-        screen.line_rel(4, 0)
-        screen.line_rel(0, 5)
-        screen.fill()
-        screen.close()
-        screen.stroke()
-      end
+
+      screen.line_rel(0, -5)
+      screen.line_rel(4, 0)
+      screen.line_rel(0, 5)
+      screen.fill()
+      screen.close()
+      screen.stroke()
 
       screen_x = screen_x + 7
       screen.move(screen_x, screen_y)
