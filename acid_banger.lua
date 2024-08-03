@@ -206,16 +206,16 @@ function draw_pattern_303(which)
 
 
   for i=1, 16 do
-    if i == pattern_pos then
-      screen.level(15)
-    else
-      screen.level(1)
-    end
-
-    screen.move(screen_x, screen_y)
+    screen.level(1)
     if i == 1 or i == 5 or i == 9 or i == 13 then
       screen.level(3)
     end
+
+    if i == pattern_pos then
+      screen.level(15)
+    end
+
+    screen.move(screen_x, screen_y)
     screen.line_rel(step_width, 0)
     screen.close()
     screen.stroke()
